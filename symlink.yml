@@ -6,9 +6,14 @@
       dev/env1/prodname1
       dev/env2/prodname2
   tasks:
-  - name: Createa symlink
-    shell: "echo {{folderpath}} | awk -F'/' '{system(\"mkdir \" $2_$3)}'"
+  - name: Create a symlink
+    shell: >
+      echo ddfd/wewew/cvcvc | 
+      awk -F'/' '{system("mkdir " $2_$3)}'      
+    register: result
 
-    # command: "mkdir /home/ubuntu/playbook/{{env}}_{{product}}"
     with_items:
       - " {{folderpath}} "
+
+        # - debug:
+        # msg: "{{ result.stdout }}"
