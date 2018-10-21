@@ -7,7 +7,7 @@
       dev/env2/prodname2
   tasks:
   - name: Createa symlink
-    command: "echo {{folderpath}} | awk -F'/' '{system(\"mkdir \" $2_$3)}'"
+    shell: "echo {{folderpath}} | awk -F'/' '{system(\"mkdir \" $2_$3)}'"
 
     # command: "mkdir /home/ubuntu/playbook/{{env}}_{{product}}"
     with_items:
