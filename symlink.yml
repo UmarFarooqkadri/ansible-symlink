@@ -2,30 +2,14 @@
 
 - hosts: localhost
   vars:
-    alpha: [ 'alpha1',  'alpha2', 'alpha3' ]
-    numbers:  [ num1, num2, num3 ]
-    env:      
-      env1
-      env2
-    prod:
-      prod1
-      prod2
-    folderpath:
-      dev/env1/prodname1
-      dev/env2/prodname2
+    env: [ 'env1',  'env2', 'env3' ]
+    productname:  [ 'productname1', 'productname2', 'productname3' ]
   tasks:
-  - name: Create a symlink
-    shell: "echo {{env}}"
-    register: result
-  - debug: var=result.stdout_lines
-
-    with_items:
-      - " {{env}} "
-
-  - name: create directory
-    shell: "mkdir {{ item.0 }}_{{ item.1 }}"
-    # - debug:
+  - name: create symlink for bin
+    #shell: "mkdir {{ item.0 }}_{{ item.1 }}"
+    shell: "echo ln -s /Dept/{{ item.0 }}/{{ item.1 }}/peak_name/bin {{ item.1 }}_bin"
+   #- debug:
           #    msg: "{{ item.0 }} and {{ item.1 }}"
     with_together:
-      - "{{ alpha }}"
-      - "{{ numbers }}"
+      - "{{ env }}"
+      - "{{ productname }}"
