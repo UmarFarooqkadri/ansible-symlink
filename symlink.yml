@@ -2,14 +2,17 @@
 
 - hosts: localhost
   vars:
-    env: [ 'env1',  'env2', 'env3' ]
-    productname:  [ 'productname1', 'productname2', 'productname3' ]
+    folderpath:
+      folder1
+      folder2    
+            #dev/env1/prodname1
+      #dev/env2/prodname2
   tasks:
-  - name: create symlink for bin
-    #shell: "mkdir {{ item.0 }}_{{ item.1 }}"
-    shell: "echo ln -s /Dept/{{ item.0 }}/{{ item.1 }}/peak_name/bin {{ item.1 }}_bin"
-   #- debug:
-          #    msg: "{{ item.0 }} and {{ item.1 }}"
-    with_together:
-      - "{{ env }}"
-      - "{{ productname }}"
+  - name: Create a symlink
+    shell: "echo {{folderpath}} | awk -F'/' '{system(\"mkdir \" $1 );}'"
+    register: result
+    #- debug:
+    #  msg: "{{ result.stdout }}"
+    with_items:
+      - " {{folderpath}} "
+
