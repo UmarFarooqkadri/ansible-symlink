@@ -3,16 +3,17 @@
 - hosts: localhost
   vars:
     folderpath:
-      folder1
-      folder2    
-            #dev/env1/prodname1
+      folder1/des
+      folder2/sdf
+      #dev/env1/prodname1
       #dev/env2/prodname2
   tasks:
   - name: Create a symlink
-    shell: "echo {{folderpath}} | awk -F'/' '{system(\"mkdir \" $1 );}'"
+    shell: "echo {{item}} | awk -F'/' '{system(\"mkdir \" $1$2 );}'"
     register: result
     #- debug:
     #  msg: "{{ result.stdout }}"
     with_items:
-      - " {{folderpath}} "
+      - folder1/des
+      - folder2/sdf
 
