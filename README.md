@@ -1,4 +1,4 @@
 # ansible-symlink
 
-# some text for
+# some text
 
