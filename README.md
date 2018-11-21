@@ -1,3 +1,3 @@
 # ansible-symlink
 
-# some text for build fdsfd
+# some text for build
